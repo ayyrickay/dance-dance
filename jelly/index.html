@@ -123,7 +123,7 @@
 
             for (var j = 0; j<5; j++){
               var item = newLayer.children[j];
-              //item.strokeColor.hue += colorChange;
+              //item.strokeColor.hue += accelMagnitude/500;
 
               // Loop through the segments of the path:
               for (var i = 0; i <= 8; i++) {
@@ -148,7 +148,8 @@
               }
             }
 
-            //body.fillColor.hue += colorChange;
+            body.fillColor.hue += accelMagnitude/50;
+            //console.log(body.fillColor.hue)
             //body.strokeColor.hue += colorChange;
 
 
@@ -174,6 +175,7 @@
 
 
       var j = new Jelly('#d5f3f6', 250, 700, 60);
+
 
       function onFrame(event) {
         j.jiggle(event);
