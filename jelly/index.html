@@ -13,17 +13,37 @@
     <script type="text/javascript" src="assets/js/paper-full.min.js"></script>
     <script src="http://cdn.pubnub.com/pubnub-3.7.18.min.js"></script>
     <!-- Script for PubNub -->
-    <script>
+    <script type="text/javascript">
+
+    var PUBNUB_accel = PUBNUB.init({
+        //publish_key: 'Your Publish Key Here',
+        subscribe_key: 'sub-c-c42b881a-9ae6-11e5-9a49-02ee2ddab7fe'
+    });
+
+    // Subscribe to the demo_tutorial channel
+    console.log("Subscribing...")
+    PUBNUB_accel.subscribe({
+      channel: 'p2-demo',
+      message: function(m){
+        console.log(
+          "Message Received." + '<br>' +
+          "Message:" + JSON.stringify(m)
+        )}
+    });
+
+    </script>
+
+    <!-- <script>
     function publish() {
 
         pubnub = PUBNUB({
-            publish_key   : 'demo',
+            //publish_key   : 'demo',
             subscribe_key : 'sub-c-c42b881a-9ae6-11e5-9a49-02ee2ddab7fe'
-        })
+        });
 
         console.log("Subscribing..");
         pubnub.subscribe({
-            channel : "Channel-zp76bsljg",
+            channel : "Channel-tw6aghkw4",
             message : function(message,env,ch,timer,magic_ch){
               console.log(
               "Message Received." + '<br>' +
@@ -43,7 +63,8 @@
                 callback: function(m){ console.log(m) }
            })
         }
-    };</script>
+    };</script> -->
+
   <!-- Script for Jellyfish viz -->
   <script type="text/paperscript" canvas="canvas">
     var Jelly = function(color, x, y, rad) {
