@@ -63,10 +63,18 @@
         body.flatten(22);
         body.smooth;
 
-        body.removeSegment(3); //from circle to blob
-        //body.insert(1, new Point([x - (rad/Math.sqrt(2)) , y - (rad/Math.sqrt(2)) ]));
-        //body.insert(3, new Point([x + (rad/Math.sqrt(2)) , y - (rad/Math.sqrt(2)) ]));
-        //body.insert(0, new Point([x , y + rad/4 ]));
+        body.removeSegment(11);
+        body.removeSegment(11);
+        body.removeSegment(11);
+        body.removeSegment(11);
+        body.removeSegment(11);
+        body.removeSegment(11);
+        body.removeSegment(9);
+        body.removeSegment(0);
+
+        body.curves[0].point1.x += -4
+        body.curves[7].point1.x += 4
+
 
         var from = new Point(100, 600);
         var to = new Point(110, 600);
@@ -104,54 +112,40 @@
 
 
       this.jiggle = function (event) {
+        var movementUP = .01;
         var frequency = 4;
         var speed = -12;
         var colorChange = 30;
-
-        var movement = 0.6 * Math.cos(event.time * frequency);
-        var movementTopHandles = 0.6 * Math.cos(event.time * frequency -0.6);
-        var movementTop = 0.6 * Math.cos(event.time * frequency -0.1);
-        var movementTopSides = 0.6 * Math.cos(event.time * frequency + +0.4);
-        var movementSides = 0.6 * Math.cos(event.time * frequency + 0.55);
         var movementUP = 0.6 * Math.cos(event.time * frequency + 2);
 
-        console.log(event.time * frequency )
-
-            var topHandleA  = body.curves[2].handle2;
-            var topHandleB  = body.curves[3].handle1;
-            var rightHandle  = body.curves[2].handle1;
-            var leftHandle  = body.curves[3].handle2;
-            var A  = body.curves[1].point1;
-            var B  = body.curves[5].point1;
-            var ATop  = body.curves[2].point1;
-            var BTop  = body.curves[4].point1;
-            var top  = body.curves[3].point1;
 
 
-            ATop.y +=  1* movementTop;
-            BTop.y +=  1* movementTop;
+
+          for (var i = 0; i < 8; i++){
+            var topHandleB = body.curves[i].point1;
 
 
-            top.y += 2* movementTop ;
+            var sinus =  2 * 0.6 * Math.cos(event.time * frequency + 0.1 - Math.abs(i - 3.5)/8);
+            topHandleB.x +=  sinus * Math.sign(i - 3.5) *0.6 * .5;
+            topHandleB.y +=  sinus //* Math.abs(1/(i - 3.5)) * 0.6 ;
 
-            ATop.x += -1.5* movementTopSides;
-            BTop.x +=  1.5* movementTopSides;
 
-            A.x += -2 * movementSides;
-            B.x +=  2 * movementSides;
+            console.log("i" +i);
+          };
+          body.curves[9].point1.x += -sinus
+          body.curves[8].point1.x += sinus
+
 
             for (var j = 0; j<5; j++){
               var item = newLayer.children[j];
               //item.strokeColor.hue += colorChange;
-
               // Loop through the segments of the path:
               for (var i = 0; i <= 8; i++) {
-                var segment = item.segments[i];
 
+                var segment = item.segments[i];
                 // A cylic value between -1 and 1
                 var sinus =  2 * 0.6 * Math.cos(event.time * frequency + 0.55 - i/4);
                 segment.point.x +=  sinus * (j-2) * .5;
-
                 if (i == 0 && j == 0){
                 path.hue
                 path.add(new Point(item.position));
@@ -188,7 +182,7 @@
     };
 
 
-      var j = new Jelly('#d5f3f6', 250, 700, 60);
+      var j = new Jelly('#d5f3f6', 250, 500, 60);
 
       function onFrame(event) {
         j.jiggle(event);
