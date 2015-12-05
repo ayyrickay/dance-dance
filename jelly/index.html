@@ -13,37 +13,38 @@
     <script type="text/javascript" src="assets/js/paper-full.min.js"></script>
     <script src="http://cdn.pubnub.com/pubnub-3.7.18.min.js"></script>
     <!-- Script for PubNub -->
-    <script>
-    function publish() {
+    <script type="text/javascript">
 
-        pubnub = PUBNUB({
-            publish_key   : 'demo',
-            subscribe_key : 'sub-c-c42b881a-9ae6-11e5-9a49-02ee2ddab7fe'
-        })
+    var PUBNUB_accel = PUBNUB.init({
+        //publish_key: 'Your Publish Key Here',
+        subscribe_key: 'sub-c-c42b881a-9ae6-11e5-9a49-02ee2ddab7fe'
+    });
 
-        console.log("Subscribing..");
-        pubnub.subscribe({
-            channel : "Channel-zp76bsljg",
-            message : function(message,env,ch,timer,magic_ch){
-              console.log(
-              "Message Received." + '<br>' +
-              "Channel: " + ch + '<br>' +
-              "Message: " + JSON.stringify(message)  + '<br>' +
-              "Raw Envelope: " + JSON.stringify(env) + '<br>' +
-              "Magic Channel: " + JSON.stringify(magic_ch)
-            )},
-            connect: pub
-        })
-
-        function pub() {
-           console.log("Since we’re publishing on subscribe connectEvent, we’re sure we’ll receive the following publish.");
-           pubnub.publish({
-                channel : "hello_world",
-                message : "Hello from PubNub Docs!",
-                callback: function(m){ console.log(m) }
-           })
+    // Subscribe to the demo_tutorial channel
+    console.log("Subscribing...")
+    PUBNUB_accel.subscribe({
+      channel: 'p2-demo',
+      message: function(m){
+        console.log(
+          "Message Received." + '<br>' +
+          "Message:" + accelMagnitude(m));
         }
-    };</script>
+    });
+
+    var accelMagnitude = function(accelData){
+      console.log(accelData)
+      var xyz = accelData["accel-xyz"];
+      var squares = xyz.map(n => n*n);
+      console.log(squares);
+      var total = squares.reduce((a,b) => a + b);
+      console.log(total);
+
+      console.log(Math.sqrt(total));
+      return Math.sqrt(total)
+    };
+
+    </script>
+
   <!-- Script for Jellyfish viz -->
   <script type="text/paperscript" canvas="canvas">
     var Jelly = function(color, x, y, rad) {
