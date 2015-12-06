@@ -13,17 +13,13 @@ var Jelly = function(color, x, y, rad) {
       radius: rad,
       strokeColor: color,
       strokeWidth: 3,
-      fillColor: '#94d4d7',
-      fullySelected: false
+      fillColor: '#588187',
+      fullySelected: false,
     });
 
     body.removeSegment(3); //from circle to blob
-
-
-    var from = new Point(100, 600);
-    var to = new Point(110, 600);
-    path = new Path.Line(from, to);
-    path.strokeColor = 'rgba(255,255,255,0.4)';
+    body.curves[0].point1.x -= 4;
+    body.curves[2].point1.x += 4;
 
     var count = 5;
     var amount = 8;
@@ -34,7 +30,7 @@ var Jelly = function(color, x, y, rad) {
       tentacle = new Path({
         strokeColor: color,
         strokeWidth: 3,
-        strokeCap: 'round'
+        strokeCap: 'round',
       });
 
       // Add 5 segment points to the path spread out
@@ -44,6 +40,7 @@ var Jelly = function(color, x, y, rad) {
       for (var i = 0; i <= amount; i++) {
         tentacle.add(new Point(xPosition, (y + i * 200 / amount) - adjustment +  10 ) );
       }
+
       tentacle.smooth();
 
       tentacle.fullySelected = false
@@ -56,9 +53,9 @@ var Jelly = function(color, x, y, rad) {
 
 
   this.jiggle = function (event) {
-    var frequency = 4;
-    var speed = -12;
-    var colorChange = 30;
+    var frequency = 4 + event.time* 0.01;
+    var speed = -12 - event.time* 0.03;
+    var colorChange = window.globals.magnitude * 360/400;
 
     var movement = 0.6 * Math.cos(event.time * frequency);
     var movementTopHandles = 0.6 * Math.cos(event.time * frequency -0.6);
@@ -77,22 +74,32 @@ var Jelly = function(color, x, y, rad) {
         A.x += -2 * movementSides;
         B.x +=  2 * movementSides;
 
+        //body.fillColor.hue = 0.2 * colorChange + 0.8 * pastColor;
+        //body.strokeColor.hue = 0.2 * colorChange + 0.8 * pastColor;
+
+
+        top.y += movement * 2;
+        topHandleA.x += 2* movementTopHandles;
+        topHandleB.x += -2*movementTopHandles;
+
         for (var j = 0; j<5; j++){
           var item = newLayer.children[j];
           //item.strokeColor.hue += colorChange;
-
           // Loop through the segments of the path:
           for (var i = 0; i <= 8; i++) {
             var segment = item.segments[i];
 
 
             // A cylic value between -1 and 1
-            var sinus =  2 * 0.6 * Math.cos(event.time * frequency + 0.4 - i/4);
+            var sinus =  2* 0.6 * Math.cos(event.time * frequency + 0.4 - i/4);
             segment.point.x +=  sinus * (j-2) * .5;
 
-            if (i == 0 && j == 0){
-            path.hue
-            path.add(new Point(item.position));
+            //Draw the bubbles
+            if (i == 0 && j == 2){
+            trace = new Path.Circle(new Point(item.position), 2);
+            trace.fillColor = '#94d4d7';
+            trace.opacity = 0.5;
+            //trace.fillColor.hue = top.y *100/400;;
           }
 
           }
@@ -104,15 +111,6 @@ var Jelly = function(color, x, y, rad) {
           }
         }
 
-        body.fillColor.hue = window.globals.magnitude;
-        //body.strokeColor.hue += colorChange;
-
-
-        top.y += movement * 2;
-        topHandleA.x += 2* movementTopHandles;
-        topHandleB.x += -2*movementTopHandles;
-
-
         if (movementUP > 0){
             body.position +=[0,  speed* movementUP];
         }else{
@@ -120,16 +118,21 @@ var Jelly = function(color, x, y, rad) {
           }
         //body.smooth();
         if (body.position.y <=-100){
-          project.clear()
-          j = new Jelly('#d5f3f6', 230, 520, 60);
+          body.remove();
+          newLayer.remove();
+          j = new Jelly('#799196', 230 + event.time, 520, 60);
         };
       view.draw();
+      var pastColor = colorChange;
+
   };
   this.init();
 };
 
 
-  var j = new Jelly('#d5f3f6', 250, 700, 60);
+  var j = new Jelly('#799196', 250, 700, 60);
+
+  //var jz = new Jelly('#d5f3f6', 300, 700, 60);
 
   function onFrame(event) {
     j.jiggle(event);
