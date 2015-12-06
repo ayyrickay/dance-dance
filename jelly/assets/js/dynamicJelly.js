@@ -74,7 +74,7 @@ var Jelly = function(color, x, y, rad) {
         A.x += -2 * movementSides;
         B.x +=  2 * movementSides;
 
-        //body.fillColor.hue = 0.2 * colorChange + 0.8 * pastColor;
+        body.fillColor = new Color(window.globals.r, window.globals.g, window.globals.b);
         //body.strokeColor.hue = 0.2 * colorChange + 0.8 * pastColor;
 
 
