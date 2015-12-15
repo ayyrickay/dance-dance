@@ -74,7 +74,7 @@ Without the LEDs, with the addition of music fingerprinting technology, could he
 
 **Figure 1:** The LEDs on in a dark room changing color
 
-![streaks of pure white light billowing on a field of black](dance-dance/assets/https://github.com/ayyrickay/dance-dance/blob/master/assets/ellen.jpg)
+![streaks of pure white light billowing on a field of black](https://github.com/ayyrickay/dance-dance/blob/master/assets/ellen.jpg)
 
 **Figure 2:** Another long-exposure photo of the sweater
 
