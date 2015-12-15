@@ -1,4 +1,4 @@
-![a long exposure photograph that shows bands of bright color spread across space in big, dramatic swirls](dance-dance/assets/bryan.JPG)
+![a long exposure photograph that shows bands of bright color spread across space in big, dramatic swirls](https://github.com/ayyrickay/dance-dance/blob/master/assets/bryan.JPG)
 # dance dance
 ###### Ellen Van Wyk, Vincent van den Goor, Ricky Holtz, Bryan Morgan
 ###### KEYWORDS: Design, Experimentation, Human Factors
@@ -12,7 +12,7 @@ Our goals were primarily to produce a minimum viable product (MVP) and to do som
 
 ### process
 
-![a clear container in a person’s hand, filled with a porous rubber; hints of a circuit board can be seen inside the container, and it has wires falling out of it. ](dance-dance/assets/turtle-finished.JPG)
+![a clear container in a person’s hand, filled with a porous rubber; hints of a circuit board can be seen inside the container, and it has wires falling out of it. ](https://github.com/ayyrickay/dance-dance/blob/master/assets/turtle-finished.JPG)
 
 ##### platform
 The production process for the sweater was focused on delivering immediate feedback to the user and pushing the data in real-time to other devices. These considerations shaped our development process in a number of different ways, specifically allowing us to stay on task and not fall down too many rabbit holes, of which there were far too many.
@@ -23,14 +23,14 @@ Using the Arduino Zero allowed us to focus on the development of our project as 
 
 We began by building our platform, which was a sweater with LEDs sewn onto the sleeves, and a small shell on the outside with an Arduino Zero and WiFi shield - referred to as the “turtle”, for its similarity to a small turtle shell (see Figure 1). As we began to build the system of LEDs and associated hardware into the sweater, however, we did some basic analysis of people’s dancing habits. We noticed that people often put their arms up, exposing the bottom of the forearm; in our sample, men tended to spread their elbows out horizontally, while women tended to pull them down, creating a more vertical line. Ultimately, we sewed the LEDs on the bottom part of the forearm for maximum visual effect, and placed the “turtle” (explained below) on the small of people’s backs in order to minimize the movement it was subjected to. Once everything was complete the basic system was that the Arduino received data from the accelerometer, relayed them to the LEDs, and published the data over WiFi using the PubNub system. So, while the garment worked as an independent system, it was also a data source for any person or application with a subscription.
 
-![brightly colored dots lay in tidy, overlapping lines; most are a single shade of green, but some show up in blue, red, or purple ](dance-dance/assets/jellytrail1.png)
+![brightly colored dots lay in tidy, overlapping lines; most are a single shade of green, but some show up in blue, red, or purple ](https://github.com/ayyrickay/dance-dance/blob/master/assets/jellytrail1.png)
 
 ##### abstract visualization
 For the abstract visualization, the initial development involved reviewing information from the fourier transform and low pass filters, and mapping parameters from the movement to visual parameters (such as color, motion, shape). This also involved a review of abstract visualizations made with javascript frameworks for inspiration, and eventually we settled on the idea of a jellyfish, for both its playfulness and its tentacles, which echo the swaying line of LEDs on the sweater platform.
 
 We wrote the jellyfish animation using a popular javascript animation library, and by looking at reference from videos of jellyfish and translating it into sinusoidal motion through trial and error. The jellyfish swims up the page, and translates to the right when it resets. The jellyfish leaves a trail of translucent bubbles, which we decided upon after testing different types of trails (jellyfish bodies, lines left by the tentacles). Once the jellyfish animation was complete, we integrated the signal magnitude data from the sweater. We mapped the magnitude to the speed of the jellyfish, and the size and color of the bubbles, after trial and error getting the right parameters (see figure above).
 
-![a screenshot of an Android phone application that’s displaying two line graphs labeled magnitude and calories](dance-dance/assets/Androidapp_real_accel.png)
+![a screenshot of an Android phone application that’s displaying two line graphs labeled magnitude and calories](https://github.com/ayyrickay/dance-dance/blob/master/assets/Androidapp_real_accel.png)
 
 ##### smartphone application
 The smartphone application was made in parallel with the platform, with early testing being done with the standard accelerometer on the phone. Conceptually, this was meant to be a more pragmatic application of the data transforming the accelerometer into something that would be useful or meaningful to users. While we enjoy the abstraction of both the sweater’s LEDs and the jellyfish’s trail, some of our prior (unpublished) work indicates that accelerometer data can be invaluable to the person who owns it, providing interesting information about their dancing patterns.
@@ -54,7 +54,7 @@ Additionally, this system is delightful for both viewers and wearers. While ther
 ### recommendations
 We have a number of issues to address moving forward, including the hardware used for the sweater, improvements and additional features on the jellyfish animation, as well as more rigorous algorithms running on the smartphone application.
 
-Another difficulty we encountered was the latency of data transmission. The Arduino sends the accelerometer readings every half second, rather than attempting to get a more granular signal. Furthermore, the Arduino WiFi shield has some major limitations; every few second, the shield needs to refresh its TCP handshake with the wireless network. This creates pauses in the color change of the LEDs and the jellyfish. The Android app uses the time difference between datapoints to determine a graph’s x-axis values, this resulted in distorted visualizations. In each chunk of messages, only one message had a time difference of 0.5 seconds, while the rest was close to 0 milliseconds. Since we know the publication rate of our platform, we fixed this by setting the timing to be equal to its inverse for each message; a reasonable assumption that significantly improves the results. Since the app is not meant for real-time monitoring, the 1 second delay is negligible and will not have a negative impact on the usefulness of the app.
+Another difficulty we encountered was the latency of data transmission. The Arduino sends the accelerometer readings every half second, rather than attempting to get a more granular signal. Furthermore, the Arduino WiFi shield has some major limitations; every few second, the shield needs to refresh its TCP handshake with the wireless network. This creates pauses in the color change of the LEDs and the jellyfish. The Android app uses the time difference between datapoints to determine a graph’s x-axis values, this resulted in distorted visualizations. In each chunk of messages, only one message had a time difference of 0.5 seconds, while the rest was close to 0 milliseconds. Since we know the publication rate of our platform, we fixed this by setting the timing to be equal to its inverse for each message; a reasonable assumption that significantly improves the results. Since the app is not meant for real-time monitoring, the delay is negligible and will not have a negative impact on the usefulness of the app.
 
 With the basic concept validated, however, we see potential applications in the following:
 
@@ -70,14 +70,14 @@ Additionally, we found that long exposure photography (which involves a slow shu
 Without the LEDs, with the addition of music fingerprinting technology, could help people curate playlists in a passive set-it-and-forget-it manner. Individuals could dance for an entire night, and check their phone the next day. All the songs you danced to were captured, and you could sort the songs by your own dancing intensity. Assuming the intensity of your dance correlates with your enjoyment of the song, you can easily add your favourite songs to Spotify without ever having to pull out Shazam during your best moves.
 
 ###artifacts
-![Two bright lines of LEDS on arms in the dark; the LEDs look like tentacles](dance-dance/assets/octo-arms.jpg)
+![Two bright lines of LEDS on arms in the dark; the LEDs look like tentacles](https://github.com/ayyrickay/dance-dance/blob/master/assets/octo-arms.jpg)
 
 **Figure 1:** The LEDs on in a dark room changing color
 
-![streaks of pure white light billowing on a field of black](dance-dance/assets/ellen.jpg)
+![streaks of pure white light billowing on a field of black](https://github.com/ayyrickay/dance-dance/blob/master/assets/ellen.JPG)
 
 **Figure 2:** Another long-exposure photo of the sweater
 
-![streaks of orange and blue light on a black field](dance-dance/assets/ellen.jpg)
+![streaks of orange and blue light on a black field](https://github.com/ayyrickay/dance-dance/blob/master/assets/ricky1.JPG)
 
 **Figure 3:** One more of those long exposure shots
