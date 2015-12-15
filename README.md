@@ -1,4 +1,4 @@
-![a long exposure photograph that shows bands of bright color spread across space in big, dramatic swirls](https://octodex.github.com/images/yaktocat.png)
+![a long exposure photograph that shows bands of bright color spread across space in big, dramatic swirls](dance-dance/assets/bryan.JPG)
 # dance dance
 ###### Ellen Van Wyk, Vincent van den Goor, Ricky Holtz, Bryan Morgan
 ###### KEYWORDS: Design, Experimentation, Human Factors
