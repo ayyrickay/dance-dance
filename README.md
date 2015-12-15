@@ -30,7 +30,7 @@ For the abstract visualization, the initial development involved reviewing infor
 
 We wrote the jellyfish animation using a popular javascript animation library, and by looking at reference from videos of jellyfish and translating it into sinusoidal motion through trial and error. The jellyfish swims up the page, and translates to the right when it resets. The jellyfish leaves a trail of translucent bubbles, which we decided upon after testing different types of trails (jellyfish bodies, lines left by the tentacles). Once the jellyfish animation was complete, we integrated the signal magnitude data from the sweater. We mapped the magnitude to the speed of the jellyfish, and the size and color of the bubbles, after trial and error getting the right parameters (see figure above).
 
-![a screenshot of an Android phone application that’s displaying two line graphs labeled magnitude and calories](https://github.com/ayyrickay/dance-dance/blob/master/assets/Androidapp-real-accel.png)
+![a screenshot of an Android phone application that’s displaying two line graphs labeled magnitude and calories](https://github.com/ayyrickay/dance-dance/blob/master/assets/Androidapp_real_accel.png)
 
 ##### smartphone application
 The smartphone application was made in parallel with the platform, with early testing being done with the standard accelerometer on the phone. Conceptually, this was meant to be a more pragmatic application of the data transforming the accelerometer into something that would be useful or meaningful to users. While we enjoy the abstraction of both the sweater’s LEDs and the jellyfish’s trail, some of our prior (unpublished) work indicates that accelerometer data can be invaluable to the person who owns it, providing interesting information about their dancing patterns.
@@ -74,7 +74,7 @@ Without the LEDs, with the addition of music fingerprinting technology, could he
 
 **Figure 1:** The LEDs on in a dark room changing color
 
-![streaks of pure white light billowing on a field of black](https://github.com/ayyrickay/dance-dance/blob/master/assets/ellen.jpg)
+![streaks of pure white light billowing on a field of black](https://github.com/ayyrickay/dance-dance/blob/master/assets/ellen.JPG)
 
 **Figure 2:** Another long-exposure photo of the sweater
 
