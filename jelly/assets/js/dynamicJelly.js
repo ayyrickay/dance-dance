@@ -109,7 +109,7 @@ var Jelly = function(color, colorFill, x, y, rad) {
 
             //Draw the bubbles
             if (i == 0 && j == 2){
-            trace = new Path.Circle(new Point(item.position), body.fillColor.hue/30);
+            trace = new Path.Circle(new Point([segment.point.x,segment.point.y]), body.fillColor.hue/30);
             trace.fillColor = '#94d4d7';
             trace.opacity = 0.5;
             trace.fillColor.hue = body.fillColor.hue;
@@ -135,10 +135,10 @@ var Jelly = function(color, colorFill, x, y, rad) {
         //body.smooth();
 
         //If jellyfish gets to top of screen, make a new one
-        if (body.position.y <=-100){
+        if (body.position.y <=0){
           body.remove();
           newLayer.remove();
-          j = new Jelly(body.strokeColor, body.fillColor, 230 + event.time/2, 520, 60);
+          j = new Jelly(body.strokeColor, body.fillColor, 250 + event.time, 600, 60);
         };
       view.draw();
   };
@@ -146,7 +146,7 @@ var Jelly = function(color, colorFill, x, y, rad) {
 };
 
 
-  var j = new Jelly('#d5f3f6', '#94d4d7', 250, 700, 60);
+  var j = new Jelly('#d5f3f6', '#94d4d7', 250, 600, 60);
 
   function onFrame(event) {
     j.jiggle(event);
